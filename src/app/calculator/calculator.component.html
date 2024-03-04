@@ -1,0 +1,64 @@
+
+<body>
+  <div class="app-container">
+   
+    <div class="analytics-card">
+      <h2>Analytics</h2>
+      <div class="analytics-content">
+        
+        <p style="color: rgb(255, 75, 150);">Recent Activity</p>
+        <ul>
+          <li>Amount of + Operations: {{countadd}}</li>
+          <li>Amount of - Operations: {{countminus}}</li>
+          <li>Amount of x Operations: {{countmultiply}}</li>
+          <li>Amount of ÷ Operations: {{countdivide}}</li>
+          <ng-container *ngIf="fun==true">
+            <li style="width: 207.23px;"><span class="gradient-text">{{returnedJoke}}</span></li>
+          </ng-container>
+        </ul>
+        
+      </div>
+    </div>
+
+  <div class="calculator">
+    <div class="display">
+      <span class="result">{{display}}</span>
+    </div>
+    <div class="buttons">
+      <!-- Row 1 -->
+
+      <button class="button" (click)="clear()">AC</button>
+
+      <ng-container *ngIf="fun==false">
+        <button  (click)="funClick()" class="funbutton">:)</button>
+      </ng-container>
+
+      <ng-container *ngIf="fun==true">
+        <button (click)="funClick()" class="button">:|</button>
+      </ng-container>
+
+      <button class="button"></button>
+      <button class="button op" (click)="getOperator('/')">÷</button>
+      <!-- Row 2 -->
+      <button class="button" (click)="getNumber(7)">7</button>
+      <button class="button" (click)="getNumber(8)">8</button>
+      <button class="button" (click)="getNumber(9)">9</button>
+      <button class="button op" (click)="getOperator('*')">×</button>
+      <!-- Row 3 -->
+      <button class="button" (click)="getNumber(4)">4</button>
+      <button class="button" (click)="getNumber(5)">5</button>
+      <button class="button" (click)="getNumber(6)">6</button>
+      <button class="button op" (click)="getOperator('-')">-</button>
+      <!-- Row 4 -->
+      <button class="button" (click)="getNumber(1)">1</button>
+      <button class="button" (click)="getNumber(2)">2</button>
+      <button class="button" (click)="getNumber(3)">3</button>
+      <button class="button op" (click)="getOperator('+')">+</button>
+      <!-- Row 5 -->
+      <button class="button zero" (click)="getNumber(0)">0</button>
+      <button class="button op" style="width: 220%;" (click)="calculate()">=</button>
+    </div>
+      </div>
+
+      </div>
+</body>
