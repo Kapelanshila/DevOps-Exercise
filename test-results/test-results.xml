@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<testsuite name="Chrome 122.0.0.0 (Windows 10)" package="" timestamp="2024-03-06T08:05:20" id="0" hostname="MBA-LPT00263" tests="16" errors="0" failures="0" time="0.091">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"/>
+  </properties>
+  <testcase name="AppComponent should have the 'Devops_Exercise' title" time="0.028" classname="AppComponent"/>
+  <testcase name="AppComponent should create the app" time="0.004" classname="AppComponent"/>
+  <testcase name="CalculatorComponent should handle division by zero appropriately" time="0.027" classname="CalculatorComponent"/>
+  <testcase name="CalculatorComponent should ignore operator if already set" time="0.003" classname="CalculatorComponent"/>
+  <testcase name="CalculatorComponent should not proceed with calculation without an operator" time="0.003" classname="CalculatorComponent"/>
+  <testcase name="CalculatorComponent should append new numbers to previous calculations correctly" time="0.003" classname="CalculatorComponent"/>
+  <testcase name="CalculatorComponent should perform subtraction correctly" time="0.002" classname="CalculatorComponent"/>
+  <testcase name="CalculatorComponent should perform addition correctly" time="0.003" classname="CalculatorComponent"/>
+  <testcase name="CalculatorComponent should perform division correctly" time="0.003" classname="CalculatorComponent"/>
+  <testcase name="CalculatorComponent should perform multiplication correctly" time="0.002" classname="CalculatorComponent"/>
+  <testcase name="CalculatorComponent should create" time="0.003" classname="CalculatorComponent"/>
+  <testcase name="CalculatorComponent should handle operator input correctly" time="0.002" classname="CalculatorComponent"/>
+  <testcase name="CalculatorComponent should handle number input correctly" time="0.002" classname="CalculatorComponent"/>
+  <testcase name="CalculatorComponent should clear calculator correctly" time="0.002" classname="CalculatorComponent"/>
+  <testcase name="CalculatorComponent should not allow more than 6 digits input" time="0.002" classname="CalculatorComponent"/>
+  <testcase name="CalculatorComponent should not perform calculation with incomplete expression" time="0.002" classname="CalculatorComponent"/>
+  <system-out>
+    <![CDATA[Chrome 122.0.0.0 (Windows 10) ERROR
+  Some of your tests did a full page reload!
+,Chrome 122.0.0.0 (Windows 10) ERROR
+  Disconnected Client disconnected from CONNECTED state (transport close)
+
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>
