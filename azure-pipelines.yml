@@ -1,37 +1,77 @@
 pool:
   name: Calculator-Exercise-AGP
   demands:
-  - agent.name -equals M0027-NEW
-  
+    - agent.name -equals M0027-NEW
+
 steps: 
+  - task: Npm@1
+    inputs:
+      command: 'custom'
+      customCommand: 'install -g @angular/cli'
+    displayName: 'Install Angular CLI'    
 
+  - task: Npm@1
+    inputs:
+      command: 'custom'
+      customCommand: 'install'
+    displayName: 'Install Node Modules'    
 
+  - script: |
+      npm test -- --watch=false
+      if [ $? -ne 0 ]; then
+        echo "##vso[task.logissue type=error]Tests failed. Pipeline execution halted."
+        exit 1
+      fi
+    displayName: 'Run Tests'   
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/test-results.xml' # Update this path to where your JUnit results are saved
+      failTaskOnFailedTests: true # Optionally fail the pipeline if tests fail
+      testRunTitle: 'Karma Test Results' # Optional: Provide a name for the test run
+    condition: succeededOrFailed()
+    displayName: 'Publish Test Results'    
 
+  - task: Npm@1
+    inputs:
+      command: 'custom'
+      customCommand: 'run build'
+    displayName: 'Run Build'    
 
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    customCommand: 'install -g @angular/cli'
+  - task: CopyFiles@2
+    inputs:
+      Contents: 'development_template.json'
+      TargetFolder: 'dist'
+    displayName: 'Copy Development template'
+
+  - task: CopyFiles@2
+    inputs:
+      Contents: 'development_parameters.json'
+      TargetFolder: 'dist'
+    displayName: 'Copy Development parameters'
+    
+    
+  - task: CopyFiles@2
+    inputs:
+      Contents: 'operational_template.json'
+      TargetFolder: 'dist'
+    displayName: 'Copy Operational template'
+
+  - task: CopyFiles@2
+    inputs:
+      Contents: 'operational_parameters.json'
+      TargetFolder: 'dist'
+    displayName: 'Copy Operational parameters'
+
+  - task: CopyFiles@2
+    inputs:
+      Contents: 'dist'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    displayName: 'Copy Package/Artifact'
  
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    customCommand: 'install'
- 
-
-  
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    customCommand: 'run build'
- 
-- task: CopyFiles@2
-  inputs:
-    Contents: 'dist'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
- 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: 'dist'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: 'dist'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
+    displayName: 'Store Package/Artifact'

@@ -29,6 +29,9 @@ export class CalculatorComponent {
 
   }
 
+  //New Function
+  //
+
   ngOnint(){
   }
 
@@ -50,7 +53,7 @@ export class CalculatorComponent {
 
   getOperator(operator:string)
   {
-    if (this.display != "")
+    if (this.display != "" && this.operator == null)
     {
       this.operator = operator;
       this.parameter1 = Number(this.number);
@@ -67,6 +70,7 @@ export class CalculatorComponent {
 
   calculate()
   {
+    if(this.operator && this.number){
     this.parameter2 = Number(this.number);
       switch(this.operator){
         case "+":
@@ -100,6 +104,10 @@ export class CalculatorComponent {
       this.number = this.calculation.toString();
       this.parameter1 = this.calculation;
       this.parameter2 = null;
+    }
+    this.parameter1 = null;
+    this.parameter2 = null;
+    this.operator = null;
   }
 
   clear()
@@ -108,6 +116,7 @@ export class CalculatorComponent {
     this.number = "";
     this.parameter1 = null;
     this.parameter2 = null;
+    this.operator = null;
   }
 
   funClick()
